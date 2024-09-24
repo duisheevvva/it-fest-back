@@ -19,7 +19,7 @@ public class ExpoService {
     public SimpleResponse saveExpoParticipant(ExpoParticipant expoParticipant) {
         ExpoParticipant expoParticipant1 = new ExpoParticipant();
         expoParticipant1.setBrandName(expoParticipant.getBrandName());
-        expoParticipant1.setFullName(expoParticipant1.getFullName());
+        expoParticipant1.setFullName(expoParticipant.getFullName());
         expoParticipant1.setEmail(expoParticipant.getEmail());
         expoParticipant1.setCountry(expoParticipant.getCountry());
         expoParticipant1.setJobTitle(expoParticipant.getJobTitle());
@@ -28,7 +28,7 @@ public class ExpoService {
         expoParticipant1.setPhoneNumber(expoParticipant.getPhoneNumber());
         expoParticipant1.setThematicExpo(expoParticipant.getThematicExpo());
         expoParticipant1.setCreatedDate(LocalDate.now());
-        expoRepository.save(expoParticipant);
+        expoRepository.save(expoParticipant1);
         return SimpleResponse
                 .builder()
                 .httpStatus(HttpStatus.OK)
