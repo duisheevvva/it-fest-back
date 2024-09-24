@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("visitor")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*",maxAge = 3600)
-
 public class VisitorApi {
     private final VisitorService visitorService;
 
