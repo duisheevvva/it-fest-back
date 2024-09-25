@@ -22,6 +22,7 @@ public class ExcelExportService {
     private final PartnerService partnerService;
     private final TournamentService tournamentService;
     private final VisitorService visitorService;
+    private final MobilographyService mobilographyService;
 
 
     public ByteArrayOutputStream exportDataToExcel() throws IOException {
@@ -85,6 +86,13 @@ public class ExcelExportService {
         writeTournamentData(cyberSportSheet, cyberSportParticipants);
         autoSizeColumns(tournamentSheet, 13);
 
+        Sheet mobilographySheet = workbook.createSheet("Mobilography");
+        writeMobilographyHeader(mobilographySheet);
+        List<Mobilography> mobilographies = mobilographyService.findAll();
+        writeMobilographyData(mobilographySheet, mobilographies);
+        autoSizeColumns(mobilographySheet, 4);
+
+
         // Запись данных в поток
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         workbook.write(outputStream);
@@ -100,15 +108,12 @@ public class ExcelExportService {
 
     private CellStyle createHeaderCellStyle(Workbook workbook) {
         CellStyle style = workbook.createCellStyle();
-        // Установка фона заголовка
-        style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
-        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
-        // Установка жирного шрифта
         Font font = workbook.createFont();
         font.setBold(true);
+        font.setColor(IndexedColors.WHITE.getIndex());
         style.setFont(font);
-
+        style.setFillForegroundColor(IndexedColors.BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         return style;
     }
 
@@ -314,6 +319,40 @@ public class ExcelExportService {
             row.createCell(2).setCellValue(visitor.getCity());
             row.createCell(3).setCellValue(visitor.getTypeOfActivity());
             row.createCell(4).setCellValue(visitor.getPhoneNumber());
+        }
+    }
+
+    // Метод для записи заголовков
+    private void writeMobilographyHeader(Sheet sheet) {
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("First Name");
+        header.createCell(1).setCellValue("Last Name");
+        header.createCell(2).setCellValue("Phone Number");
+        header.createCell(3).setCellValue("Link Video");
+
+
+        // Установка стиля заголовков (по желанию)
+        CellStyle headerStyle = createHeaderCellStyle(sheet.getWorkbook());
+        for (int i = 0; i < header.getPhysicalNumberOfCells(); i++) {
+            header.getCell(i).setCellStyle(headerStyle);
+        }
+
+        // Установка ширины столбцов
+        sheet.setColumnWidth(0, 20 * 256); // First Name
+        sheet.setColumnWidth(1, 20 * 256); // Last Name
+        sheet.setColumnWidth(2, 20 * 256); // Phone Number
+        sheet.setColumnWidth(3, 30 * 256); // Link Video
+    }
+
+    // Метод для записи данных
+    private void writeMobilographyData(Sheet sheet, List<Mobilography> mobilographies) {
+        int rowNum = 1;
+        for (Mobilography mobilography : mobilographies) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(mobilography.getFirstName());
+            row.createCell(1).setCellValue(mobilography.getLastName());
+            row.createCell(2).setCellValue(mobilography.getPhoneNumber());
+            row.createCell(3).setCellValue(mobilography.getLinkVideo());
         }
     }
 
