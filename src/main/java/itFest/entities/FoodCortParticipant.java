@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class FoodCortParticipant {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "foodCort_gen")
-    @SequenceGenerator(name = "foodCort_gen",sequenceName = "foodCort_seq")
+    @SequenceGenerator(name = "foodCort_gen",sequenceName = "foodCort_seq",allocationSize = 1)
     private Long id;
     private String brandName;
     private String fullName;

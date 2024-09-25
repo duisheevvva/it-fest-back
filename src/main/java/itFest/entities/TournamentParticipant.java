@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class TournamentParticipant {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "tournament_gen")
-    @SequenceGenerator(name = "tournament_gen",sequenceName = "tournament_seq")
+    @SequenceGenerator(name = "tournament_gen",sequenceName = "tournament_seq",allocationSize = 1)
     private Long id;
     private String firstName;
     private String lastName;

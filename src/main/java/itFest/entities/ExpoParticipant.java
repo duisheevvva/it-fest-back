@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class ExpoParticipant {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "expo_gen")
-    @SequenceGenerator(name = "expo_gen",sequenceName = "expo_seq")
+    @SequenceGenerator(name = "expo_gen",sequenceName = "expo_seq",allocationSize = 1)
     private Long id;
     private String brandName;
     private String fullName;

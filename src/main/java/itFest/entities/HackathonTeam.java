@@ -9,20 +9,19 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "visitor")
+@Table(name = "hackathons")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Visitor {
+public class HackathonTeam {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "visitor_gen")
-    @SequenceGenerator(name = "visitor_gen",sequenceName = "visitor_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hackathonTeam_gen")
+    @SequenceGenerator(name = "hackathonTeam_gen", sequenceName = "hackathonTeam_seq", allocationSize = 1)
     private Long id;
-    private String name;
-    private String city;
+    private String fullName;
+    private String email;
     private LocalDate dateOfBirth;
     private String phoneNumber;
-    private String typeOfActivity;
-    private LocalDate createdDate;
+    private String position;
 }

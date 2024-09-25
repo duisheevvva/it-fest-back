@@ -2,6 +2,7 @@ package itFest.service;
 
 import itFest.dto.SimpleResponse;
 import itFest.entities.Visitor;
+import itFest.exception.BadCredentialException;
 import itFest.repository.VisitorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class VisitorService {
                     .httpStatus(HttpStatus.OK)
                     .message("Successfully saved!!")
                     .build();
-        } catch (Exception e) {
+        } catch (BadCredentialException e) {
             return SimpleResponse
                     .builder()
                     .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)

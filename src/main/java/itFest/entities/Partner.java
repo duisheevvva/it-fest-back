@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class Partner {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "partner_gen")
-    @SequenceGenerator(name = "partner_gen",sequenceName = "partner_seq")
+    @SequenceGenerator(name = "partner_gen",sequenceName = "partner_seq",allocationSize = 1)
     private Long id;
     private String companyName;
     private String fullName;
