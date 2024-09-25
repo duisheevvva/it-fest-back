@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Transactional
 @RequiredArgsConstructor
 public class ExpoService {
+
     private final ExpoRepository expoRepository;
 
     public SimpleResponse saveExpoParticipant(ExpoParticipant expoParticipant) {

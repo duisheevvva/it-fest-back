@@ -30,7 +30,4 @@ public class Swagger {
                 .type(SecurityScheme.Type.HTTP)
                 .scheme("Bearer");
     }
-
-
-
 }

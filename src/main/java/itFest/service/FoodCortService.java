@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Service
 @RequiredArgsConstructor
 public class FoodCortService {
+
     private final FoodCortRepository foodCortRepository;
 
     public SimpleResponse saveFoodCort(FoodCortParticipant foodCortParticipant) {

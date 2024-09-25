@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @Transactional
 public class PartnerService {
+
     private final PartnerRepository partnerRepository;
 
     public SimpleResponse savedPartner(Partner partner) {

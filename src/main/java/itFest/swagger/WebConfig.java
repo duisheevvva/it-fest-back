@@ -10,9 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080","https://ec2-3-127-247-177.eu-central-1.compute.amazonaws.com") // или укажите конкретные домены, если возможно
+                .allowedOrigins("http://localhost:8080","https://ec2-3-127-247-177.eu-central-1.compute.amazonaws.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(false); // Если вам не нужны куки или другие креденциалы, установите в false
+                .allowCredentials(false);
     }
 }

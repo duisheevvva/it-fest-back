@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Service
 @RequiredArgsConstructor
 public class TournamentService {
+
     private final TournamentRepository tournamentRepository;
 
     public SimpleResponse saveTournament(TournamentParticipant tournamentParticipant) {
