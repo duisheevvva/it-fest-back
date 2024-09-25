@@ -1,6 +1,7 @@
 package itFest.api;
 
 import itFest.dto.HackathonRequest;
+import itFest.dto.HackathonTeamListRequest;
 import itFest.dto.SimpleResponse;
 import itFest.entities.Hackathon;
 import itFest.entities.HackathonTeam;
