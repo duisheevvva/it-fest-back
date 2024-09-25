@@ -99,68 +99,12 @@ public class TournamentService {
     }
 
 
-
-
-
     public List<TournamentParticipant> findAll(){
         return tournamentRepository.findAll();
     }
 
-
-
-//    public byte[] exportParticipantToExcel() throws IOException {
-//        log.info("Экспорт данных участника турнира в Excel начат.");
-//
-//        List<TournamentParticipant> participants = findAll();
-//        Workbook workbook = new XSSFWorkbook();
-//        Sheet sheet = workbook.createSheet("Participants");
-//
-//        // Заголовки таблицы
-//        Row headerRow = sheet.createRow(0);
-//        String[] headers = {"Имя", "Фамилия", "Отчество", "Email", "Страна", "Город", "Тематика турнира", "Дата рождения", "Телефон", "Дата создания"};
-//
-//        for (int i = 0; i < headers.length; i++) {
-//            Cell headerCell = headerRow.createCell(i);
-//            headerCell.setCellValue(headers[i]);
-//            headerCell.setCellStyle(createHeaderCellStyle(workbook));
-//        }
-//
-//        int rowNum = 1;
-//        for (TournamentParticipant participant : participants) {
-//            Row row = sheet.createRow(rowNum++);
-//            row.createCell(0).setCellValue(participant.getFirstName());
-//            row.createCell(1).setCellValue(participant.getLastName());
-//            row.createCell(2).setCellValue(participant.getSurname());
-//            row.createCell(3).setCellValue(participant.getEmail());
-//            row.createCell(4).setCellValue(participant.getCountry());
-//            row.createCell(5).setCellValue(participant.getCity());
-//            row.createCell(6).setCellValue(participant.getThematicTournament().ordinal());
-//            row.createCell(7).setCellValue(participant.getDateOfBirth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-//            row.createCell(8).setCellValue(participant.getPhoneNumber());
-//            row.createCell(9).setCellValue(participant.getCreatedDate().toString());
-//        }
-//
-//        // Автоматическое изменение ширины колонок
-//        for (int i = 0; i < headers.length; i++) {
-//            sheet.autoSizeColumn(i);
-//        }
-//
-//        // Запись данных в байтовый массив
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//        workbook.write(bos);
-//        workbook.close();
-//
-//        log.info("Экспорт данных участника турнира в Excel завершен.");
-//        return bos.toByteArray();
-//    }
-//
-//    private CellStyle createHeaderCellStyle(Workbook workbook) {
-//        CellStyle cellStyle = workbook.createCellStyle();
-//        Font font = workbook.createFont();
-//        font.setBold(true);
-//        cellStyle.setFont(font);
-//        cellStyle.setAlignment(HorizontalAlignment.CENTER);
-//        return cellStyle;
-//    }
+    public List<TournamentParticipant> findByThematicSection( ThematicSectionTournament tournamentSection){
+        return tournamentRepository.findByThematicSection(tournamentSection);
+    }
 
 }

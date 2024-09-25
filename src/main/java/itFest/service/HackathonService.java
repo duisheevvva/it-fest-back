@@ -52,4 +52,8 @@ public class HackathonService {
                 .build();
     }
 
+    public List<Hackathon> findAll(){
+        return hackathonRepository.findAll();
+    }
+
 }

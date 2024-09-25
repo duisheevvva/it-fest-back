@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Transactional
 @Service
@@ -34,5 +35,9 @@ public class FoodCortService {
                 .httpStatus(HttpStatus.OK)
                 .message("Successfully saved!!!")
                 .build();
+    }
+
+    public List<FoodCortParticipant> findAll(){
+        return foodCortRepository.findAll();
     }
 }
