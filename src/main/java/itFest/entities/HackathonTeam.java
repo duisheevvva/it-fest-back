@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "hackathons")
+@Table(name = "hackathon_teams")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,4 +24,6 @@ public class HackathonTeam {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String position;
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REMOVE,CascadeType.REFRESH})
+    private Hackathon hackathon;
 }

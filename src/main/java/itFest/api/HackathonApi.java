@@ -1,10 +1,7 @@
 package itFest.api;
 
 import itFest.dto.HackathonRequest;
-import itFest.dto.HackathonTeamListRequest;
 import itFest.dto.SimpleResponse;
-import itFest.entities.Hackathon;
-import itFest.entities.HackathonTeam;
 import itFest.service.HackathonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class HackathonApi {
+
     private final HackathonService hackathonService;
 
     @PostMapping

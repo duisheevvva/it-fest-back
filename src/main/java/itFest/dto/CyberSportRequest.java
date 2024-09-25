@@ -1,28 +1,19 @@
-package itFest.entities;
+package itFest.dto;
 
-import itFest.enums.DesignDirection;
 import itFest.enums.Direction;
 import itFest.enums.FormatParticipation;
 import itFest.enums.ThematicSectionTournament;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.*;
 
 import java.time.LocalDate;
-
-@Entity
-@Table(name = "tournament_participants")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TournamentParticipant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "tournament_gen")
-    @SequenceGenerator(name = "tournament_gen",sequenceName = "tournament_seq",allocationSize = 1)
-    private Long id;
+@Builder
+public class CyberSportRequest {
     private String firstName;
     private String lastName;
     private String surname;
@@ -38,7 +29,4 @@ public class TournamentParticipant {
     private FormatParticipation formatParticipation;
     @Enumerated(EnumType.STRING)
     private Direction direction;
-    @Enumerated(EnumType.STRING)
-    private DesignDirection designDirection;
-
 }

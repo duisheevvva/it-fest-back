@@ -1,26 +1,31 @@
 package itFest.dto;
 
-import itFest.enums.HackathonDirection;
+import itFest.enums.DesignDirection;
+
 import itFest.enums.ThematicSectionTournament;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class HackathonRequest {
-    private String teamName;
-    private String country;
+public class DesignRequest {
+    private String firstName;
+    private String lastName;
+    private String surname;
+    private LocalDate dateOfBirth;
+    private String email;
     private String city;
+    private String country;
+    private String phoneNumber;
     @Enumerated(EnumType.STRING)
     private ThematicSectionTournament thematicTournament;
+    private LocalDate createdDate;
     @Enumerated(EnumType.STRING)
-    private HackathonDirection hackathonDirection;
-    private List<HackathonTeamListRequest> hackathonTeams;
+    private DesignDirection designDirection;
 }

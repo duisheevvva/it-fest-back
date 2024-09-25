@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,8 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Hackathon {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "hackathon_gen")
-    @SequenceGenerator(name = "hackathon_gen",sequenceName = "hackathon_seq",allocationSize = 1,initialValue = 5)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hackathon_gen")
+    @SequenceGenerator(name = "hackathon_gen", sequenceName = "hackathon_seq", allocationSize = 1)
     private Long id;
     private String teamName;
     private String country;
@@ -29,12 +28,11 @@ public class Hackathon {
     private ThematicSectionTournament thematicTournament;
     @Enumerated(EnumType.STRING)
     private HackathonDirection hackathonDirection;
-//    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
-//    private List<HackathonTeam> hackathonTeamList;
-    private String fullName;
-    private String email;
-    private LocalDate dateOfBirth;
-    private String phoneNumber;
-    private String position;
+    @OneToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH},mappedBy = "hackathon")
+    private List<HackathonTeam> hackathonTeam;
+
 
 }

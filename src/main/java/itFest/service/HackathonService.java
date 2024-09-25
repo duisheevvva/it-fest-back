@@ -1,14 +1,19 @@
 package itFest.service;
 
 import itFest.dto.HackathonRequest;
+import itFest.dto.HackathonTeamListRequest;
 import itFest.dto.SimpleResponse;
 import itFest.entities.Hackathon;
+import itFest.entities.HackathonTeam;
 import itFest.repository.HackathonRepository;
 import itFest.repository.HackathonTeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,28 +23,33 @@ public class HackathonService {
     private final HackathonRepository hackathonRepository;
     private final HackathonTeamRepository hackathonTeamRepository;
 
-
     public SimpleResponse saveHackathon(HackathonRequest hackathonRequest) {
-        Hackathon hackathon1 = new Hackathon();
-        hackathon1.setTeamName(hackathonRequest.getTeamName());
-        hackathon1.setCountry(hackathonRequest.getCountry());
-        hackathon1.setCity(hackathonRequest.getCity());
-        hackathon1.setThematicTournament(hackathonRequest.getThematicTournament());
-        hackathon1.setHackathonDirection(hackathonRequest.getHackathonDirection());
-        hackathon1.setFullName(hackathonRequest.getFullName());
-        hackathon1.setDateOfBirth(hackathonRequest.getDateOfBirth());
-        hackathon1.setEmail(hackathonRequest.getEmail());
-        hackathon1.setPhoneNumber(hackathonRequest.getPhoneNumber());
-        hackathon1.setPosition(hackathonRequest.getPosition());
-        hackathonRepository.save(hackathon1);
+        Hackathon hackathon = new Hackathon();
+        hackathon.setTeamName(hackathonRequest.getTeamName());
+        hackathon.setCountry(hackathonRequest.getCountry());
+        hackathon.setCity(hackathonRequest.getCity());
+        hackathon.setThematicTournament(hackathonRequest.getThematicTournament());
+        hackathon.setHackathonDirection(hackathonRequest.getHackathonDirection());
 
+        List<HackathonTeam> hackathonTeams = new ArrayList<>();
+        for (HackathonTeamListRequest teamMember : hackathonRequest.getHackathonTeams()) {
+            HackathonTeam hackathonTeam = new HackathonTeam();
+            hackathonTeam.setFullName(teamMember.getFullName());
+            hackathonTeam.setEmail(teamMember.getEmail());
+            hackathonTeam.setDateOfBirth(teamMember.getDateOfBirth());
+            hackathonTeam.setPhoneNumber(teamMember.getPhoneNumber());
+            hackathonTeam.setPosition(teamMember.getPosition());
+            hackathonTeam.setHackathon(hackathon);
+            hackathonTeams.add(hackathonTeam);
+        }
 
-        return SimpleResponse
-                .builder()
+        hackathon.setHackathonTeam(hackathonTeams);
+        hackathonRepository.save(hackathon);
+
+        return SimpleResponse.builder()
                 .httpStatus(HttpStatus.OK)
-                .message("Successfully saved!!")
+                .message("Successfully saved!")
                 .build();
-
     }
 
 }
