@@ -4,14 +4,12 @@ import itFest.dto.SimpleResponse;
 import itFest.entities.Mobilography;
 import itFest.service.MobilographyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/mobilography")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class MobilographyApi {
     private final MobilographyService mobilographyService;
 
