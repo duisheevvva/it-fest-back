@@ -5,13 +5,16 @@ services:
     container_name: itfestback
     restart: always
     ports:
-      - "80:8080"
+      - "80:443"
+      - "443:443"
     environment:
       SPRING_PROFILES_ACTIVE: main
-      SERVER_PORT: 8080
+      SERVER_PORT: 443
       POSTGRES_DB: jdbc:postgresql://database:5432/postgres
       POSTGRES_USER: itfestuser
       POSTGRES_PASSWORD: itfest2024
+      FULLCHAINPEM: /certs/live/itfest.peaksoft.house/fullchain.pem
+      RIVKEYPEM: /certs/live/itfest.peaksoft.house/privkey.pem
   database:
     image: postgres:15
     restart: always
@@ -25,3 +28,5 @@ services:
       - db_data:/var/lib/postgresql/data
 volumes:
   db_data:
+  certs:
+    external: true
