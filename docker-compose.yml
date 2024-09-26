@@ -14,7 +14,9 @@ services:
       POSTGRES_USER: itfestuser
       POSTGRES_PASSWORD: itfest2024
       FULLCHAINPEM: /certs/live/itfest.peaksoft.house/fullchain.pem
-      RIVKEYPEM: /certs/live/itfest.peaksoft.house/privkey.pem
+      PRIVKEYPEM: /certs/live/itfest.peaksoft.house/privkey.pem
+    volumes:
+      - certs:/certs
   database:
     image: postgres:15
     restart: always
